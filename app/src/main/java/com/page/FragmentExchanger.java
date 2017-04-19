@@ -31,6 +31,7 @@ public class FragmentExchanger implements FragmentManager.OnBackStackChangedList
         frag.setArguments(bundle);
         FragmentManager fm = mFragmentActivity.getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
+//        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         ft.replace(R.id.fragment_container, frag);
         ft.addToBackStack(null);
         ft.commit();

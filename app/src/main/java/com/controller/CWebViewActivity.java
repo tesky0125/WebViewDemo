@@ -13,10 +13,11 @@ import com.rylanyan.webviewdemo.R;
 /**
  * Created by yanjunjie on 2017/4/18.
  */
-public class CWebViewActivity extends FragmentActivity implements BackHandledInterface{
+public class CWebViewActivity extends FragmentActivity implements BackHandledInterface, OnFragmentInteractionListener{
 
     private BackHandledFragment mBackHandedFragment;
     private PageExchanger mPageExchanger;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,14 +25,14 @@ public class CWebViewActivity extends FragmentActivity implements BackHandledInt
         setContentView(R.layout.activity_controller);
         initialize();
 
-//        CWebViewFragment frag = new CWebViewFragment();
-//        Bundle bundle = new Bundle();
-//        bundle.putString("page_url", "file:///android_asset/index.html");
-//        frag.setArguments(bundle);
-//        getSupportFragmentManager()
-//                .beginTransaction()
-//                .replace(R.id.fragment_container, frag)
-//                .commit();
+        CWebViewFragment frag = new CWebViewFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("page_url", "file:///android_asset/index.html");
+        frag.setArguments(bundle);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, frag)
+                .commit();
 
         View v = this.findViewById(R.id.btn);
 
@@ -40,16 +41,21 @@ public class CWebViewActivity extends FragmentActivity implements BackHandledInt
             public void onClick(View view) {
 //                FragmentOption option = new FragmentOption("file:///android_asset/index.html");
 //                CWebViewActivity.this.gotoFragment(null, option);
-                CWebViewFragment frag = new CWebViewFragment();
-                Bundle bundle = new Bundle();
-                bundle.putString("page_url", "file:///android_asset/index.html");
-                frag.setArguments(bundle);
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragment_container, frag)
-                        .commit();
+//                CWebViewFragment frag = new CWebViewFragment();
+//                Bundle bundle = new Bundle();
+//                bundle.putString("page_url", "file:///android_asset/index.html");
+//                frag.setArguments(bundle);
+//                getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .replace(R.id.fragment_container, frag)
+//                        .commit();
             }
         });
+    }
+
+    @Override
+    public void onFragmentInteraction(View fragmentView){
+
     }
 
     private void initialize(){
