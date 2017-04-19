@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title><title>test jsb</title></title>
+</head>
+
+<body>
+    <h3>Welcome to Android WebView Demo</h3>
+    <script type="text/javascript">
+        console.log("html.script:"+Date.now());
+        window.addEventListener("DOMContentLoaded", function(){
+            console.log("DOMContentLoaded:"+Date.now());
+        });
+        window.onload = function(){
+            console.log("window.onload:"+Date.now());
+        }
+    </script>
+    <script type="text/javascript" src="js/bridge.js"></script>
+    <script type="text/javascript" src="js/service.js"></script>
+    <script type="text/javascript" src="js/test.js"></script>
+</body>
+
+</html>

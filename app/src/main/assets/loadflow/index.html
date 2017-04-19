@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="https://statictest7.lu.com/m-h5/resource/common/imgs/logo_57.5d050f98.png" />
+    <!-- js 404 don't block window.onload -->
+    <script type="text/javascript" src="404.js"></script>
+    <!-- js loading block window.onload  -->
+    <script type="text/javascript" src="bigfile.js"></script>
+    <!-- js execute while-true block window.onload  -->
+    <!-- js execute error don't block window.onload  -->
+    <script type="text/javascript" src="test.js"></script>
+    <!-- css 404 don't block window.onload -->
+    <link rel="stylesheet" type="text/css" href="404.css">
+    <!-- css loading block window.onload -->
+    <link rel="stylesheet" type="text/css" href="bigfile.css">
+    <link rel="stylesheet" type="text/css" href="test.css">
+    <style type="text/css">
+        img{
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='div1'>to test js(while true) block html render?yes</div>
+    <img src="404.png">
+    <img src="bigfile.png">
+    <img src="test.png">
+    <iframe src="404.html"></iframe>
+    <iframe src="test.html"></iframe>
+    <script type="text/javascript">
+        console.log("html.script:"+Date.now());
+        window.addEventListener("DOMContentLoaded", function(){
+            console.log("DOMContentLoaded:"+Date.now());
+        });
+        window.onload = function(e){
+            console.log("window.onload:"+Date.now());
+            console.log('window.onload complete! success or failed!test js/css/images/iframe');
+        }
+    </script>
+</body>
+
+</html>
