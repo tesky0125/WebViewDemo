@@ -1,12 +1,13 @@
 package com.controller;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 
+import com.page.FragmentOption;
+import com.page.PageExchanger;
 import com.rylanyan.webviewdemo.R;
 
 /**
@@ -15,29 +16,52 @@ import com.rylanyan.webviewdemo.R;
 public class CWebViewActivity extends FragmentActivity implements BackHandledInterface{
 
     private BackHandledFragment mBackHandedFragment;
+    private PageExchanger mPageExchanger;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_controller);
+        initialize();
 
-        Button button = (Button) this.findViewById(R.id.btn_test);
-        button.setOnClickListener(new View.OnClickListener() {
+//        CWebViewFragment frag = new CWebViewFragment();
+//        Bundle bundle = new Bundle();
+//        bundle.putString("page_url", "file:///android_asset/index.html");
+//        frag.setArguments(bundle);
+//        getSupportFragmentManager()
+//                .beginTransaction()
+//                .replace(R.id.fragment_container, frag)
+//                .commit();
+
+        View v = this.findViewById(R.id.btn);
+
+        v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CWebViewActivity.this.gotoFragment();
+//                FragmentOption option = new FragmentOption("file:///android_asset/index.html");
+//                CWebViewActivity.this.gotoFragment(null, option);
+                CWebViewFragment frag = new CWebViewFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("page_url", "file:///android_asset/index.html");
+                frag.setArguments(bundle);
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, frag)
+                        .commit();
             }
         });
-
     }
 
-    public void gotoFragment(){
-        CWebViewFragment f = new CWebViewFragment();
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.container, f);
-        ft.addToBackStack("tag");
-        ft.commit();
+    private void initialize(){
+        mPageExchanger = new PageExchanger(this);
+    }
+
+    public void gotoActivity(FragmentActivity activity){
+        mPageExchanger.goToActivity(activity);
+    }
+
+    public void gotoFragment(Fragment fragment, FragmentOption option){
+        mPageExchanger.goToFragment(fragment, option);
     }
 
     @Override

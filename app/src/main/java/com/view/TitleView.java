@@ -16,8 +16,9 @@ import com.rylanyan.webviewdemo.R;
 
 public class TitleView extends RelativeLayout {
 
-    private OnClickListener mLeftListener;
-    private OnClickListener mRightListener;
+    private TextView leftTv;
+    private TextView rightTv;
+    private TextView titleTv;
 
     public TitleView(Context context) {
         this(context, null);
@@ -36,18 +37,15 @@ public class TitleView extends RelativeLayout {
         LayoutInflater inflater = LayoutInflater.from(context);
         ViewGroup layout = (ViewGroup) inflater.inflate(R.layout.widget_titleview, this);
 
-        TextView leftTv = (TextView) findViewById(R.id.title_view_left_tv);
-        TextView rightTv = (TextView) findViewById(R.id.title_view_right_tv);
-        TextView titleTv = (TextView) findViewById(R.id.title_view_title_tv);
-        leftTv.setOnClickListener(mLeftListener);
-        leftTv.setOnClickListener(mRightListener);
+        leftTv = (TextView) findViewById(R.id.title_view_left_tv);
+        rightTv = (TextView) findViewById(R.id.title_view_right_tv);
+        titleTv = (TextView) findViewById(R.id.title_view_title_tv);
+
     }
 
-    public void setLeftOnClickListener(View.OnClickListener listener){
-        mLeftListener = listener;
-    }
-
-    public void setRightOnClickListener(View.OnClickListener listener){
-        mRightListener = listener;
+    public void setOnClickListener(View.OnClickListener listener){
+        leftTv.setOnClickListener(listener);
+        rightTv.setOnClickListener(listener);
+        titleTv.setOnClickListener(listener);
     }
 }

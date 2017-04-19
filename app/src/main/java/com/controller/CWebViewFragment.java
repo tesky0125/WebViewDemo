@@ -5,12 +5,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
 
 import com.bridge.JavascriptBridge;
 import com.http.HttpRequest;
 import com.http.HttpRequestCallback;
+import com.page.FragmentOption;
 import com.rylanyan.webviewdemo.R;
 import com.service.H5CommonService;
 import com.service.H5ServicePluginManager;
@@ -25,27 +27,27 @@ import org.json.JSONObject;
  */
 public class CWebViewFragment extends BackHandledFragment implements CWebViewCallback, HttpRequestCallback, View.OnClickListener {
 
+    private static final String PAGE_URL = "page_url";
+
     private CWebView mWebview;
     private H5ServicePluginManager mH5ServicePluginManager;
     private H5CommonService mH5CommonService;
     private HttpRequest mHttpRequest;
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.fragment_controller, container, false);
         TitleView titleView = (TitleView) layout.findViewById(R.id.webview_title);
-        titleView.setLeftOnClickListener(this);
-        titleView.setRightOnClickListener(this);
+        titleView.setOnClickListener(this);
         LinearLayout webView = (LinearLayout) layout.findViewById(R.id.webview_container);
         initialize(webView);
         return layout;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
     }
 
     @Override
@@ -83,14 +85,15 @@ public class CWebViewFragment extends BackHandledFragment implements CWebViewCal
 
         mWebview.setWebViewCallback(this);
 
-        mWebview.loadUrl("file:///android_asset/index.html");
-
         mHttpRequest = new HttpRequest();
 
         mH5ServicePluginManager = new H5ServicePluginManager(this);
         mH5CommonService = new H5CommonService(this);
 
         mH5ServicePluginManager.registerH5Service(mH5CommonService);
+
+        String url = this.getArguments().getString(PAGE_URL);
+        mWebview.loadUrl(url);
     }
 
 
@@ -105,6 +108,10 @@ public class CWebViewFragment extends BackHandledFragment implements CWebViewCal
 
     public H5CommonService getH5CommonService() {
         return mH5CommonService;
+    }
+
+    public CWebView getWebView(){
+        return mWebview;
     }
 
     @Override

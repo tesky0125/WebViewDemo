@@ -49,8 +49,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:visibility="gone">
+            android:paddingRight="15dp">
 
             <TextView
                 android:id="@+id/title_view_right_tv"

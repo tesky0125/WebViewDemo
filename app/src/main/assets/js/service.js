@@ -10,6 +10,11 @@
        			callback(response);
        		});
        },
+       pushView: function(params, callback){
+            bridge.require('push_view', params, function(response){
+                callback(response);
+            });
+       }
     };
     window.service = service;
 }();
