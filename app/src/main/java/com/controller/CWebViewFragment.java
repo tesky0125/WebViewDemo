@@ -30,7 +30,6 @@ public class CWebViewFragment extends BackHandledFragment implements CWebViewCal
 
     private static final String PAGE_URL = "page_url";
 
-    private OnFragmentInteractionListener mFragmentInteractionListener;
     private CWebView mWebview;
     private H5ServicePluginManager mH5ServicePluginManager;
     private H5CommonService mH5CommonService;
@@ -44,29 +43,12 @@ public class CWebViewFragment extends BackHandledFragment implements CWebViewCal
         titleView.setOnClickListener(this);
         LinearLayout webView = (LinearLayout) layout.findViewById(R.id.webview_container);
         initialize(webView);
-        mFragmentInteractionListener.onFragmentInteraction(layout);
         return layout;
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        try {
-            mFragmentInteractionListener = (OnFragmentInteractionListener)  context;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mFragmentInteractionListener = null;
     }
 
     @Override

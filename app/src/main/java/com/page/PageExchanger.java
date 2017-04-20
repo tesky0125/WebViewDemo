@@ -1,8 +1,7 @@
 package com.page;
 
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.view.View;
 
 /**
  * Created by yanjunjie on 2017/4/18.

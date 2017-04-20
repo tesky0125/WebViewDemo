@@ -1,5 +1,6 @@
 package com.rylanyan.webviewdemo;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,10 +11,10 @@ import com.controller.CWebViewActivity;
 /**
  * Created by yanjunjie on 2017/4/17.
  */
-public class CWebViewDemoActivity extends CWebViewActivity {
+public class CWebViewDemoActivity extends Activity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_webview_demo);
 

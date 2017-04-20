@@ -1,10 +1,10 @@
 package com.page;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 
 import com.controller.CWebViewFragment;
@@ -19,7 +19,7 @@ public class FragmentExchanger implements FragmentManager.OnBackStackChangedList
     private FragmentActivity mFragmentActivity = null;
 
     public FragmentExchanger(FragmentActivity activity){
-        this.mFragmentManager = activity.getSupportFragmentManager();
+        this.mFragmentManager = activity.getFragmentManager();
         this.mFragmentManager.addOnBackStackChangedListener(this);
         this.mFragmentActivity = activity;
     }
@@ -29,9 +29,9 @@ public class FragmentExchanger implements FragmentManager.OnBackStackChangedList
         Bundle bundle = new Bundle();
         bundle.putString("page_url", option.getUrl());
         frag.setArguments(bundle);
-        FragmentManager fm = mFragmentActivity.getSupportFragmentManager();
+        FragmentManager fm = mFragmentActivity.getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-//        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         ft.replace(R.id.fragment_container, frag);
         ft.addToBackStack(null);
         ft.commit();
